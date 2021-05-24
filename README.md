@@ -11,3 +11,4 @@
 - mySql2
 - Sequelize
 - Express
+- Insomnia
