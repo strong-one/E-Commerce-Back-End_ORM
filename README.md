@@ -7,3 +7,7 @@
 ## Features
 
 ## Credits
+
+- mySql2
+- Sequelize
+- Express
