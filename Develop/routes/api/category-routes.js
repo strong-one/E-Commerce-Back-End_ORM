@@ -7,9 +7,11 @@ router.get("/", async (req, res) => {
   // find all categories
   // be sure to include its associated Products
   try {
-    const userData = await Category.findAll();
+    const userData = await Category.findAll({
+      include: [{ model: Product }],
+    }); // waiting for userdata to come back from finding all in the category and storing the result of the data in a variable
 
-    res.status(200).json(userData);
+    res.status(200).json(userData); // if everything works, status code is 200 (all good), and will return the requested data
   } catch (err) {
     res.status(400).json(err);
   }
@@ -20,7 +22,9 @@ router.get("/:id", async (req, res) => {
   // be sure to include its associated Products
 
   try {
-    const userData = await Category.findByPk(req.params.id);
+    const userData = await Category.findByPk(req.params.id, {
+      include: [{ model: Product }],
+    }); // finding by primary key, req.params.id is the location of the actual id number (request, parameter, id )
 
     res.status(200).json(userData);
   } catch (err) {
@@ -31,7 +35,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   // create a new category
   try {
-    const userData = await Category.create(req.body);
+    const userData = await Category.create(req.body); // creating a new category, user is requesting to post in the body of the page, (req.body) -- storing the data post request in a variable
     res.status(200).json(userData);
   } catch (err) {
     res.status(400).json(err);

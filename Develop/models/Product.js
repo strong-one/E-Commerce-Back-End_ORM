@@ -13,9 +13,9 @@ Product.init(
     // define columns
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      allowNull: false, // will not allow null values
+      primaryKey: true, // setting as primary key
+      autoIncrement: true, // the id will auto increment
     },
     product_name: {
       type: DataTypes.STRING,
@@ -25,31 +25,31 @@ Product.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
-        isDecimal: true,
+        isDecimal: true, // making sure that the value is a decimal
       },
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: "10",
+      defaultValue: 10, // setting default value to 10
       validate: {
-        isNumeric: true,
+        isNumeric: true, // making sure that the value is a number
       },
     },
     category_id: {
       type: DataTypes.INTEGER,
       // Reference the `Category` model's `id`.
       references: {
-        model: Category,
-        key: id,
+        model: "Category",
+        key: "id",
       },
     },
   },
   {
     sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
+    timestamps: false, // no timestamps in table
+    freezeTableName: true, // table name will remain the same, will not pluralize
+    underscored: true, // will add underscore to text with multiple words
     modelName: "product",
   }
 );
